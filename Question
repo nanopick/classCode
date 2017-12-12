@@ -1,0 +1,37 @@
+import java.util.ArrayList;
+
+public class Question {
+
+	private int points;
+	private String questionAsked;
+	ArrayList<Answer> answers= new ArrayList<Answer>();
+	
+	public Question(int newPoints, String newQuestion) {
+		points=newPoints;
+		questionAsked=newQuestion;
+	}                                                                                                                                                                                                                                                                                                  
+
+	public void add(Answer newAnswer) {
+		answers.add(newAnswer);
+	}
+	
+	public String getQuestionAsked() {
+		return questionAsked;
+	}
+	
+	
+	public int getPoints() {
+		return points;
+	}
+	
+	public String getStringAnswer(int index) {
+		return answers.get(index).getAnswer();
+	}
+
+	
+	public boolean getBoolean(int index) {
+		return answers.get(index).getTrueOrFalse();
+	}
+	
+	
+}
