@@ -1,0 +1,328 @@
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.Font;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.ArrayList;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+
+public class StrutSample extends JFrame implements ActionListener {
+  
+	ArrayList<Question> questionArray= new ArrayList<Question>();
+	JLabel nameLabel=new JLabel();
+    JLabel questionLabel=new JLabel();
+    JTextField textA=new JTextField(20);
+    JTextField textB=new JTextField(20);
+    JTextField textC=new JTextField(20);
+    JTextField textD=new JTextField(20);
+    JPanel thirdPanel = new JPanel();
+    JPanel fourthPanel = new JPanel(new FlowLayout());
+    JPanel fifthPanel = new JPanel(new FlowLayout());
+    JButton extraOption= new JButton("50/50");
+    int currentQuestionIndex=0;
+	
+	public static void main(String args[]) {
+
+		StrutSample strutDemo= new StrutSample();
+		strutDemo.setVisible(false);
+		strutDemo.setUpGame();
+	}
+	
+	public void setUpGame() {
+		
+		Question one=new Question(500, "What is the latest version of Java?");
+		one.add(new Answer("8", false));
+		one.add(new Answer("9",true));
+		one.add(new Answer("10", false));
+		one.add(new Answer("7", false));
+		questionArray.add(one);
+		
+		Question two= new Question(1000,"What is the deepest lake in the world?");
+		two.add(new Answer("Lake Baikal", true));
+		two.add(new Answer("Crater Lake", false));
+		two.add(new Answer("Lake Superior", false));
+		two.add(new Answer("Caspian Sea", false));
+		questionArray.add(two);
+		
+		Question three = new Question(2000,"What is not one of the main Java concepts?");
+		three.add(new Answer("Object Oriented", false));
+		three.add(new Answer("Inheritance", false));
+		three.add(new Answer("Polymorphism", false));
+		three.add(new Answer("Platform dependent", true));
+		questionArray.add(three);
+		
+		Question four = new Question(3000,"The term caviar refers to the salt cured roe of what fish?");
+		four.add(new Answer("Bass", false));
+		four.add(new Answer("Sturgeon", true));
+		four.add(new Answer("Catfish", false));
+		four.add(new Answer("Carp", false));
+		questionArray.add(four);
+		
+		Question five = new Question(5000,"The salchow is a move performed in which sport?");
+		five.add(new Answer("Football", false));
+		five.add(new Answer("Fencing", false));
+		five.add(new Answer("Ice skating", true));
+		five.add(new Answer("Baseball", false));
+		questionArray.add(five);
+		
+		Question six = new Question(7000,"Who discovered the first bug in programming?");
+		six.add(new Answer("Steve Wozniak", false));
+		six.add(new Answer("Grace Hopper", true));
+		six.add(new Answer("Ada Lovelace", false));
+		six.add(new Answer("Alan Turing", false));
+		questionArray.add(six);
+		
+		Question seven = new Question(10000,"Which is not a title of an Agatha Christie novel?");
+		seven.add(new Answer("Murder on the Orient Express", false));
+		seven.add(new Answer("And Then There Were None", false));
+		seven.add(new Answer("All Around the Town", true));
+		seven.add(new Answer("Death on the Nile", false));
+		questionArray.add(seven);
+		
+		Question eight = new Question(20000,"Who invented Java?");
+		eight.add(new Answer("Bill Gates", false));
+		eight.add(new Answer("James Gosling", true));
+		eight.add(new Answer("Guido van Rossum", false));
+		eight.add(new Answer("Ken Thompson", false));
+		questionArray.add(eight);
+		
+		Question nine = new Question(30000,"Sardinia is an autonomous region in what country?");
+		nine.add(new Answer("Morocco", false));
+		nine.add(new Answer("France", false));
+		nine.add(new Answer("Turkey", false));
+		nine.add(new Answer("Italy", true));
+		questionArray.add(nine);
+		
+		Question ten = new Question(50000,"How many offical languages are there in Switzerland?");
+		ten.add(new Answer("4", true));
+		ten.add(new Answer("3", false));
+		ten.add(new Answer("1", false));
+		ten.add(new Answer("6", false));
+		questionArray.add(ten);
+		
+		Question eleven = new Question(100000,"What was the original name of Java?");
+		eleven.add(new Answer("Silk", false));
+		eleven.add(new Answer("Oak", true));
+		eleven.add(new Answer("DNA", false));
+		eleven.add(new Answer("Sun", false));
+		questionArray.add(eleven);
+		
+		Question twelve = new Question(250000,"What country was just banned from the 2018 Olympics?");
+		twelve.add(new Answer("North Korea", false));
+		twelve.add(new Answer("Pakistan", false));
+		twelve.add(new Answer("Russia", true));
+		twelve.add(new Answer("China", false));
+		questionArray.add(twelve);
+		
+		Question thirteen = new Question(500000,"Which of the below is not a type of error in Java?");
+		thirteen.add(new Answer("logic error", false));
+		thirteen.add(new Answer("run-time error", false));
+		thirteen.add(new Answer("syntax error", false));
+		thirteen.add(new Answer("class error", true));
+		questionArray.add(thirteen);
+		
+		Question fourteen = new Question(1000000,"Who is the author of our class textbook?");
+		fourteen.add(new Answer("Walter Savitch", true));
+		fourteen.add(new Answer("Ron Johnson", false));
+		fourteen.add(new Answer("Peter Rosenthal", false));
+		fourteen.add(new Answer("David Katzenberg", false));
+		questionArray.add(fourteen);
+		
+	    printFirst(one);
+	}
+	
+	public StrutSample()
+	{
+	JFrame frame = new JFrame("Millionaire Game");
+	Box horizontalBox;
+	
+	JPanel mainPanel = new JPanel();
+	mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.Y_AXIS));
+	frame.setContentPane(mainPanel);
+	Container contentPane = frame.getContentPane();
+	frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+	frame.setVisible(true);	
+		
+
+	horizontalBox = Box.createHorizontalBox();
+    nameLabel.setFont(new Font("Ariel", Font.PLAIN, 50));
+    nameLabel.setForeground(Color.white);
+    horizontalBox.add(nameLabel);
+    JPanel firstPanel= new JPanel(new FlowLayout());
+    firstPanel.setBackground(Color.BLUE);
+    firstPanel.add(horizontalBox);
+    firstPanel.setBorder(BorderFactory.createTitledBorder(""));
+    contentPane.add(firstPanel);
+    
+    horizontalBox = Box.createHorizontalBox();
+    questionLabel.setFont(new Font("Ariel", Font.PLAIN, 50));
+    questionLabel.setForeground(Color.white);
+    horizontalBox.add(questionLabel);
+    JPanel secondPanel = new JPanel(new FlowLayout());
+    secondPanel.setBackground(Color.BLUE);
+    secondPanel.add(horizontalBox);
+    secondPanel.setBorder(BorderFactory.createTitledBorder(""));
+    contentPane.add(secondPanel);
+
+    horizontalBox = Box.createHorizontalBox();
+    horizontalBox.add(Box.createHorizontalStrut(10));
+    JButton aButton = new JButton("A");
+    aButton.setFont(new Font("Ariel", Font.PLAIN, 40));
+    aButton.addActionListener(this);
+    horizontalBox.add(aButton);
+    horizontalBox.add(Box.createHorizontalStrut(10));
+    JButton bButton = new JButton("B");
+    bButton.setFont(new Font("Ariel", Font.PLAIN, 40));
+    bButton.addActionListener(this);
+    horizontalBox.add(bButton);
+    horizontalBox.add(Box.createHorizontalStrut(10));
+    JButton cButton= new JButton("C");
+    cButton.setFont(new Font("Ariel", Font.PLAIN, 40));
+    cButton.addActionListener(this);
+    horizontalBox.add(cButton);
+    horizontalBox.add(Box.createHorizontalStrut(10));
+    JButton dButton= new JButton("D");
+    dButton.setFont(new Font("Ariel", Font.PLAIN, 40));
+    dButton.addActionListener(this);
+    horizontalBox.add(dButton);
+    thirdPanel.setLayout(new FlowLayout());
+    thirdPanel.setBackground(Color.BLUE);
+    thirdPanel.add(horizontalBox);
+    contentPane.add(thirdPanel);
+    
+    horizontalBox = Box.createVerticalBox();
+    horizontalBox.add(Box.createVerticalStrut(15));
+    textA.setFont(new Font("Ariel", Font.PLAIN, 35));
+    textA.setEditable(false);
+    horizontalBox.add(textA);
+    horizontalBox.add(Box.createVerticalStrut(10));
+    textB.setFont(new Font("Ariel", Font.PLAIN, 35));
+    textB.setEditable(false);
+    horizontalBox.add(textB);
+    horizontalBox.add(Box.createVerticalStrut(10));
+    textC.setFont(new Font("Ariel", Font.PLAIN, 35));
+    textC.setEditable(false);
+    horizontalBox.add(textC);
+    horizontalBox.add(Box.createVerticalStrut(10));
+    textD.setFont(new Font("Ariel", Font.PLAIN, 35));
+    textD.setEditable(false);
+    horizontalBox.add(textD);
+    fourthPanel.setBackground(Color.BLUE);
+    fourthPanel.add(horizontalBox);
+    contentPane.add(fourthPanel);
+    
+    horizontalBox = Box.createHorizontalBox();
+    extraOption.setFont(new Font("Ariel", Font.PLAIN, 35));
+    extraOption.addActionListener(this);
+    horizontalBox.add(extraOption);
+    horizontalBox.add(Box.createHorizontalStrut(10));
+    fifthPanel.setBackground(Color.BLUE);
+    fifthPanel.add(horizontalBox);
+    fifthPanel.setBorder(BorderFactory.createTitledBorder(""));
+    contentPane.add(fifthPanel);
+
+
+    frame.setSize(1500, 1500);
+    
+
+  }
+	
+	public void setUpNextQuestion() {
+        if(currentQuestionIndex < questionArray.size()) {
+    		nameLabel.setText(String.valueOf(questionArray.get(currentQuestionIndex).getPoints()));
+    		questionLabel.setText(questionArray.get(currentQuestionIndex).getQuestionAsked());
+    		textA.setText(questionArray.get(currentQuestionIndex).getStringAnswer(0));
+    		textB.setText(questionArray.get(currentQuestionIndex).getStringAnswer(1));
+    		textC.setText(questionArray.get(currentQuestionIndex).getStringAnswer(2));
+    		textD.setText(questionArray.get(currentQuestionIndex).getStringAnswer(3));
+    		}
+        else {nameLabel.setText("You Win!");
+             questionLabel.setVisible(false);
+             thirdPanel.setVisible(false);
+             fourthPanel.setVisible(false);
+             fifthPanel.setVisible(false);
+        	}
+             
+        }
+	
+	
+	public void printFirst(Question newQuestion) {
+		nameLabel.setText(String.valueOf(newQuestion.getPoints()));
+		questionLabel.setText(newQuestion.getQuestionAsked());
+		textA.setText(newQuestion.getStringAnswer(0));
+		textB.setText(newQuestion.getStringAnswer(1));
+		textC.setText(newQuestion.getStringAnswer(2));
+		textD.setText(newQuestion.getStringAnswer(3));
+	}
+	
+  public void actionPerformed(ActionEvent e) {
+	  
+		 if (e.getActionCommand().equals("A"))
+			 if (questionArray.get(currentQuestionIndex).getBoolean(0)==true) {
+				 currentQuestionIndex++;
+				 this.setUpNextQuestion();
+			 }
+			 else System.exit(0);
+		 else if (e.getActionCommand().equals("B"))
+			 if (questionArray.get(currentQuestionIndex).getBoolean(1)==true) {
+				 currentQuestionIndex++;
+				 this.setUpNextQuestion();
+			 }
+			 else System.exit(0);
+		 else if (e.getActionCommand().equals("C"))
+			 if (questionArray.get(currentQuestionIndex).getBoolean(2)==true) {
+				 currentQuestionIndex++;
+				 this.setUpNextQuestion();
+			 }
+			 else System.exit(0);
+		 else if (e.getActionCommand().equals("D"))
+			 if (questionArray.get(currentQuestionIndex).getBoolean(3)==true) {
+				 currentQuestionIndex++;
+				 this.setUpNextQuestion();
+			 }
+			 else System.exit(0);
+		 else if (e.getActionCommand().equals("50/50")) {
+			 extraOption.setVisible(false);
+			 int sum=0;
+			 for (int count=0; count<4; count++)
+			 {
+				 if (questionArray.get(currentQuestionIndex).getBoolean(count)==false) {
+					 if (count==0) {
+						 textA.setText("");
+						 sum++;
+					 }
+					 if (count==1) {
+						 textB.setText("");
+						 sum++;
+					 }
+					 if (count==2) {
+						 textC.setText("");
+						 sum++;
+					 }
+					 if (count==3) {
+						 textD.setText("");
+						 sum++;
+					 }
+					 if (sum==2) {
+						 return;
+					 }
+				 }
+			 }
+		 }
+		 else
+		 System.out.println("Error in button interface.");
+	}
+}
+
