@@ -1,0 +1,22 @@
+import java.util.ArrayList;
+
+public class Answer {
+
+	private String newAnswer;
+	private boolean isCorrect;
+	
+public Answer(String answerString, boolean isCorrect) {
+	newAnswer=answerString;
+	this.isCorrect=isCorrect;
+}
+
+public String getAnswer() {
+	return newAnswer;
+}
+
+
+public boolean getTrueOrFalse() {
+	return isCorrect;
+}
+	
+}
